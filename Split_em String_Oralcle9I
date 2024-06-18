@@ -1,0 +1,35 @@
+set serveroutput on;
+declare
+--
+V_etiqueta varchar2(64):= '64|29-05-2024|2|1365|T|5267';
+--
+V_pce_codigo     palete_conferencia_entrada.pce_codigo%TYPE;
+V_pce_data_lcto  palete_conferencia_entrada.pce_data_lcto%TYPE;
+V_neg_codigo     palete_conferencia_entrada.neg_codigo%TYPE;
+V_ord_codigo     palete_conferencia_entrada.ord_codigo%TYPE;
+V_ord_seq        palete_conferencia_entrada.ord_seq%TYPE;
+V_idx_inicio     NUMBER(03) := 1;
+--
+begin
+   --
+   V_pce_codigo     := substr(V_etiqueta, V_idx_inicio, instr(V_etiqueta, '|', 1)-V_idx_inicio);
+   V_idx_inicio     := instr(V_etiqueta, '|', 1)+1;
+   --
+   V_pce_data_lcto  := substr(V_etiqueta, V_idx_inicio, instr(V_etiqueta, '|', V_idx_inicio)-V_idx_inicio);
+   V_idx_inicio     := instr(V_etiqueta, '|', V_idx_inicio)+1;
+   --
+   V_neg_codigo     := substr(V_etiqueta, V_idx_inicio, instr(V_etiqueta, '|', V_idx_inicio)-V_idx_inicio);
+   V_idx_inicio     := instr(V_etiqueta, '|', V_idx_inicio)+1;
+   --
+   V_ord_codigo     := substr(V_etiqueta, V_idx_inicio, instr(V_etiqueta, '|', V_idx_inicio)-V_idx_inicio);
+   V_idx_inicio     := instr(V_etiqueta, '|', V_idx_inicio)+1;
+   --
+   V_ord_seq        := substr(V_etiqueta, V_idx_inicio, instr(V_etiqueta, '|', V_idx_inicio)-V_idx_inicio);
+   --
+   dbms_output.put_line(' V_pce_codigo    ' || V_pce_codigo); 
+   dbms_output.put_line(' V_pce_data_lcto ' || V_pce_data_lcto);
+   dbms_output.put_line(' V_neg_codigo    ' || V_neg_codigo);
+   dbms_output.put_line(' V_ord_codigo    ' || V_ord_codigo);
+   dbms_output.put_line(' V_ord_seq       ' || V_ord_seq);
+   --
+end;
